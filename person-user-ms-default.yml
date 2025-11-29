@@ -1,0 +1,70 @@
+spring:
+  datasource:
+    url: jdbc:mariadb://localhost:3306/comaco
+    username: db_client
+    password: apppassword
+    driver-class-name: org.mariadb.jdbc.Driver
+    hikari:
+      maximum-pool-size: 10  # Máximo 10 conexiones simultáneas
+      minimum-idle: 3
+      idle-timeout: 30000
+      max-lifetime: 1800000
+      connection-timeout: 30000
+  jpa:
+    show-sql: true
+    properties:
+      hibernate:
+    show-sql: true
+      ddl-auto: create-drop
+    properties:
+      hibernate:
+        format_sql: true
+
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 10MB
+      max-request-size: 10MB
+
+server:
+  tomcat:
+    connection-timeout: 60s
+  servlet:
+    session:
+      timeout: 60s
+
+
+
+
+eureka:
+  instance:
+    instance-id: ${spring.application.name}:${random.uuid}
+  client:
+    service-url:
+      defaultZone: http://eureka:${SPRING_EUREKA_PASSWORD}@${SPRING_EUREKA_HOST}:8761/eureka
+
+resilience4j:
+  circuitbreaker:
+    configs:
+      default:
+        sliding-window-size: 10
+        minimum-number-of-calls: 5
+        permitted-number-of-calls-in-half-open-state: 3
+        failure-rate-threshold: 50
+        wait-duration-in-open-state: 10000ms
+        slow-call-rate-threshold: 50
+        slow-call-duration-threshold: 500ms
+        record-exceptions:
+          - java.lang.Exception
+          - org.springframework.web.client.HttpServerErrorException
+          - com.qsoft.exception.DomainException
+    instances:
+      service1:
+        base-config: default
+        wait-duration-in-open-state: 14500ms
+      service12:
+        base-config: default
+  timelimiter:
+    instances:
+      service1:
+        timeout-duration: 2000ms

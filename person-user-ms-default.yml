@@ -33,37 +33,9 @@ server:
       timeout: 60s
 
 
-
-
 eureka:
   instance:
     instance-id: ${spring.application.name}:${random.uuid}
   client:
     service-url:
       defaultZone: http://eureka:${SPRING_EUREKA_PASSWORD}@${SPRING_EUREKA_HOST}:8761/eureka
-
-resilience4j:
-  circuitbreaker:
-    configs:
-      default:
-        sliding-window-size: 10
-        minimum-number-of-calls: 5
-        permitted-number-of-calls-in-half-open-state: 3
-        failure-rate-threshold: 50
-        wait-duration-in-open-state: 10000ms
-        slow-call-rate-threshold: 50
-        slow-call-duration-threshold: 500ms
-        record-exceptions:
-          - java.lang.Exception
-          - org.springframework.web.client.HttpServerErrorException
-          - com.qsoft.exception.DomainException
-    instances:
-      service1:
-        base-config: default
-        wait-duration-in-open-state: 14500ms
-      service12:
-        base-config: default
-  timelimiter:
-    instances:
-      service1:
-        timeout-duration: 2000ms

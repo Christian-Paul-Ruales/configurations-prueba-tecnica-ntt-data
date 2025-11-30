@@ -1,9 +1,9 @@
 spring:
   datasource:
-    url: jdbc:mariadb://localhost:3306/db_client
-    username: db_client
+    url: jdbc:postgresql://localhost:5436/db_transaction
+    username: db_transaction
     password: apppassword
-    driver-class-name: org.mariadb.jdbc.Driver
+    driver-class-name: org.postgresql.Driver
     hikari:
       maximum-pool-size: 10  # Máximo 10 conexiones simultáneas
       minimum-idle: 3
@@ -17,7 +17,7 @@ spring:
     properties:
       hibernate:
         format_sql: true
-        dialect: org.hibernate.dialect.MariaDBDialect
+        dialect: org.hibernate.dialect.PostgreSQLDialect
 
   servlet:
     multipart:
@@ -31,7 +31,6 @@ server:
   servlet:
     session:
       timeout: 60s
-
 
 
 eureka:

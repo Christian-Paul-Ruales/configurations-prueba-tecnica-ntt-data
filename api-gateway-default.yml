@@ -8,32 +8,32 @@ spring:
               enabled: true
               lower-case-service-id: true
 
-      routes:
-        - id: person-user-ms
-          uri: lb://PERSON-USER-MS
-          predicates:
-            - Path=/api/v1/customers/**
-          filters:
-            - StripPrefix=1
+          routes:
+            - id: person-user-ms
+              uri: lb://PERSON-USER-MS
+              predicates:
+                - Path=/api/v1/customers/**
+              filters:
+                - StripPrefix=1
 
-        - id: transaction-account-ms
-          uri: lb://TRANSACTION-ACCOUNT-MS
-          predicates:
-            - Path=/api/v1/accounts/**, /api/v1/movements/**
-          filters:
-            - StripPrefix=1
+            - id: transaction-account-ms
+              uri: lb://TRANSACTION-ACCOUNT-MS
+              predicates:
+                - Path=/api/v1/accounts/**, /api/v1/movements/**
+              filters:
+                - StripPrefix=1
 
-        - id: discovery-server
-          uri: lb://DISCOVERY-SERVER
-          predicates:
-            - Path=/eureka/web
-          filters:
-            - SetPath=/
+            - id: discovery-server
+              uri: lb://DISCOVERY-SERVER
+              predicates:
+                - Path=/eureka/web
+              filters:
+                - SetPath=/
 
-        - id: discovery-server-static
-          uri: lb://DISCOVERY-SERVER-STATIC
-          predicates:
-            - Path=/eureka/**
+            - id: discovery-server-static
+              uri: lb://DISCOVERY-SERVER-STATIC
+              predicates:
+                - Path=/eureka/**
 
     loadbalancer:
       ribbon:

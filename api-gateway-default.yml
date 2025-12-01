@@ -4,11 +4,6 @@ spring:
       discovery:
         locator:
           enabled: true
-      server:
-        webflux:
-          discovery:
-            locator:
-              enabled: true
 
       routes:
         - id: person-user-ms

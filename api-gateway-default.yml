@@ -5,8 +5,8 @@ spring:
         webflux:
           discovery:
             locator:
-              enabled: true
-
+              enabled: false
+              lower-case-service-id: false
       routes:
         - id: person-user-ms
           uri: lb://PERSON-USER-MS

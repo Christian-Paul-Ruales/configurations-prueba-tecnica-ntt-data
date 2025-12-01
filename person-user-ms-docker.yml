@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:mariadb://db_client:3306/db_client
+    url: jdbc:mariadb://db-client:3306/db_client
     username: db_client
     password: apppassword
     driver-class-name: org.mariadb.jdbc.Driver

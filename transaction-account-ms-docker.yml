@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:postgresql://db_transaction:5436/db_transaction
+    url: jdbc:postgresql://db-transaction:5436/db_transaction
     username: db_transaction
     password: apppassword
     driver-class-name: org.postgresql.Driver

@@ -1,5 +1,3 @@
-
-spring.cloud.gateway.server.webflux.discovery.locator.enabled
 spring:
   cloud:
     gateway:

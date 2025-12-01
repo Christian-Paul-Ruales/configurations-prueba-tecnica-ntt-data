@@ -4,6 +4,11 @@ spring:
       discovery:
         locator:
           enabled: true
+      server:
+        webflux:
+          discovery:
+            locator:
+              enabled: true
 
       routes:
         - id: person-user-ms
@@ -11,14 +16,14 @@ spring:
           predicates:
             - Path=/api/v1/customers/**
           filters:
-            - StripPrefix=0
+            - StripPrefix=1
 
         - id: transaction-account-ms
           uri: lb://TRANSACTION-ACCOUNT-MS
           predicates:
             - Path=/api/v1/accounts/**, /api/v1/movements/**
           filters:
-            - StripPrefix=0
+            - StripPrefix=1
 
         - id: discovery-server
           uri: lb://DISCOVERY-SERVER

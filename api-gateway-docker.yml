@@ -1,0 +1,65 @@
+spring:
+  cloud:
+    gateway:
+      server:
+        webflux:
+          discovery:
+            locator:
+              enabled: true
+              lower-case-service-id: true
+
+          routes:
+            - id: person-user-ms
+              uri: lb://PERSON-USER-MS
+              predicates:
+                - Path=/api/v1/customers/**
+              filters:
+                - StripPrefix=1
+
+            - id: transaction-account-ms
+              uri: lb://TRANSACTION-ACCOUNT-MS
+              predicates:
+                - Path=/api/v1/accounts/**, /api/v1/movements/**
+              filters:
+                - StripPrefix=1
+
+            - id: discovery-server
+              uri: lb://DISCOVERY-SERVER
+              predicates:
+                - Path=/eureka/web
+              filters:
+                - SetPath=/
+
+            - id: discovery-server-static
+              uri: lb://DISCOVERY-SERVER-STATIC
+              predicates:
+                - Path=/eureka/**
+
+    loadbalancer:
+      ribbon:
+        enabled: false
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health
+      base:
+        path: /actuator
+
+eureka:
+  instance:
+    instance-id: ${spring.application.name}:${random.uuid}
+  client:
+    service-url:
+      defaultZone: http://eureka:${SPRING_EUREKA_PASSWORD}@${SPRING_EUREKA_HOST}:8761/eureka
+
+logging:
+  level:
+    root: info
+    org:
+      springframework:
+        cloud:
+          gateway: trace
+          gateway.route:
+            RouteDefinitionRouteLocator: info

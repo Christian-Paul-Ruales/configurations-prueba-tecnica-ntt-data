@@ -1,0 +1,48 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://db_transaction:5436/db_transaction
+    username: db_transaction
+    password: apppassword
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      maximum-pool-size: 10  # Máximo 10 conexiones simultáneas
+      minimum-idle: 3
+      idle-timeout: 30000
+      max-lifetime: 1800000
+      connection-timeout: 30000
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 10MB
+      max-request-size: 10MB
+  kafka:
+    bootstrap-servers: kafka:9092
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+
+server:
+  tomcat:
+    connection-timeout: 60s
+  servlet:
+    session:
+      timeout: 60s
+
+
+
+eureka:
+  instance:
+    instance-id: ${spring.application.name}:${random.uuid}
+  client:
+    service-url:
+      defaultZone: http://eureka:${SPRING_EUREKA_PASSWORD}@${SPRING_EUREKA_HOST}:8761/eureka
+

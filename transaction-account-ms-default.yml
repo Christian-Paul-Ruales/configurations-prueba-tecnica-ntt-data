@@ -32,6 +32,11 @@ server:
     session:
       timeout: 60s
 
+  kafka:
+    bootstrap-servers: localhost:9092
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
 
 eureka:
   instance:
@@ -39,3 +44,4 @@ eureka:
   client:
     service-url:
       defaultZone: http://eureka:${SPRING_EUREKA_PASSWORD}@${SPRING_EUREKA_HOST}:8761/eureka
+

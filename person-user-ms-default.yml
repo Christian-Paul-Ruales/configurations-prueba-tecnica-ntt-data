@@ -32,6 +32,8 @@ server:
     session:
       timeout: 60s
 
+gateway:
+  uri: http://localhost:8080
 
 
 eureka:

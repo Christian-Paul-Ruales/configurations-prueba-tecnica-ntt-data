@@ -32,7 +32,8 @@ server:
     session:
       timeout: 60s
 
-
+gateway:
+  uri: http://api-gateway:8080
 
 eureka:
   instance:

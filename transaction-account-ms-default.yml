@@ -18,7 +18,12 @@ spring:
       hibernate:
         format_sql: true
         dialect: org.hibernate.dialect.PostgreSQLDialect
-
+  sql:
+    init:
+      mode: always
+      platform: postgresql
+      continue-on-error: true
+      data-locations: classpath:inserts.sql
   servlet:
     multipart:
       enabled: true

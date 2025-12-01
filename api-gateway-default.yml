@@ -5,7 +5,7 @@ spring:
         webflux:
           discovery:
             locator:
-              enabled: false
+              enabled: true
 
       routes:
         - id: person-user-ms

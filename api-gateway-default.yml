@@ -1,14 +1,14 @@
 spring:
+  webflux:
+    base-path: /api
   cloud:
     gateway:
-      discovery:
-        locator:
-          enabled: true
       server:
         webflux:
           discovery:
             locator:
-              enabled: true
+              enabled: false
+              lower-case-service-id: true
 
       routes:
         - id: person-user-ms

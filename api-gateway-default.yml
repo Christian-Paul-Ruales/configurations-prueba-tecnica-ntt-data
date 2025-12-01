@@ -1,9 +1,13 @@
+
+spring.cloud.gateway.server.webflux.discovery.locator.enabled
 spring:
   cloud:
     gateway:
-      discovery:
-        locator:
-          enabled: true
+      server:
+        webflux:
+          discovery:
+            locator:
+              enabled: true
 
       routes:
         - id: person-user-ms

@@ -31,3 +31,18 @@ spring:
     loadbalancer:
       ribbon:
         enabled: false
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health
+      base:
+        path: /actuator
+
+eureka:
+  instance:
+    instance-id: ${spring.application.name}:${random.uuid}
+  client:
+    service-url:
+      defaultZone: http://eureka:${SPRING_EUREKA_PASSWORD}@${SPRING_EUREKA_HOST}:8761/eureka

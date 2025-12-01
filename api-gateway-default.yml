@@ -12,11 +12,15 @@ spring:
           uri: lb://PERSON-USER-MS
           predicates:
             - Path=/api/v1/customers/**
+          filters:
+            - StripPrefix=0
 
         - id: transaction-account-ms
           uri: lb://TRANSACTION-ACCOUNT-MS
           predicates:
             - Path=/api/v1/accounts/**, /api/v1/movements/**
+          filters:
+            - StripPrefix=0
 
         - id: discovery-server
           uri: lb://DISCOVERY-SERVER

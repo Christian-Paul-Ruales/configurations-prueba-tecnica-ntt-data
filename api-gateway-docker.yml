@@ -19,7 +19,7 @@ spring:
             - id: transaction-account-ms
               uri: lb://TRANSACTION-ACCOUNT-MS
               predicates:
-                - Path=/api/v1/accounts/**, /api/v1/movements/**
+                - Path=/api/v1/accounts/**, /api/v1/movements/**, /api/v1/report/**
               filters:
                 - StripPrefix=1
 
